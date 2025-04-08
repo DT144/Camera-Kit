@@ -1,7 +1,7 @@
-import React, { type FC } from 'react';
+import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 
-export const Hint: FC<{ text: string }> = ({ text }) => {
+export const Hint = ({ text }) => {
     return <Text style={styles.hint}>{text}</Text>;
 };
 

@@ -1,27 +1,22 @@
-import React, { useRef, type FC } from 'react';
+import React, { useRef } from 'react';
 import { Text, StyleSheet, Pressable, Animated } from 'react-native';
 
-interface ButtonProps {
-    title: string;
-    onPress: () => void;
-}
-
-export const Button: FC<ButtonProps> = ({ title, onPress }) => {
-    const animatedButtonScaleRef = useRef<Animated.Value>();
+export const Button = ({ title, onPress }) => {
+    const animatedButtonScaleRef = useRef();
 
     if (animatedButtonScaleRef.current == undefined) {
         animatedButtonScaleRef.current = new Animated.Value(1);
     }
 
     const onPressIn = () => {
-        Animated.spring(animatedButtonScaleRef.current!, {
+        Animated.spring(animatedButtonScaleRef.current, {
             toValue: 0.9,
             useNativeDriver: true,
         }).start();
     };
 
     const onPressOut = () => {
-        Animated.spring(animatedButtonScaleRef.current!, {
+        Animated.spring(animatedButtonScaleRef.current, {
             toValue: 1,
             useNativeDriver: true,
         }).start();

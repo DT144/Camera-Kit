@@ -1,5 +1,5 @@
-import React, { useEffect, useState, type FC } from 'react';
-import { View, Text, StyleSheet, Platform, Dimensions, type LayoutChangeEvent } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, Platform, Dimensions } from 'react-native';
 import { CameraPreviewView } from '../../src/CameraPreviewView';
 import { Lenses } from './Lenses';
 import { useCameraPermissions } from '../../src/useCameraPermissions';
@@ -8,35 +8,21 @@ import { Snapshot } from './capture-preview/ImagePreview';
 import { VideoPreview } from './capture-preview/VideoPreview';
 import { useCameraState, useCameraStateDispatch } from './CameraStateContext';
 import { Button } from './Button';
-import type { Rect } from '../../src/CameraKitContextModule';
-
-/**
- * An interface that defines a single method onStopRendering which takes no parameters and returns void.
- */
-interface PreviewProps {
-    onStopRendering: () => void;
-}
 
 const platformScale = Platform.OS === 'android' ? Dimensions.get('screen').scale : 1;
 
-const reduceHeightTo70Percent = (rect: Rect): Rect => ({
+const reduceHeightTo70Percent = (rect) => ({
     ...rect,
     bottom: rect.bottom * 0.7,
 });
 
-/**
- * A function to calculate the preview size based on the LayoutChangeEvent.
- * 
- * @param {LayoutChangeEvent} event - the event containing layout information
- * @returns {Rect} - the preview size
- */
-export const Preview: FC<PreviewProps> = ({ onStopRendering }) => {
+export const Preview = ({ onStopRendering }) => {
     const { position, mirrorHorizontally, videoRecording, reduceSafeArea } = useCameraState();
     const dispatch = useCameraStateDispatch();
     const { takeSnapshot, takeVideo } = useCameraKit();
     const [showCamera, setShowCamera] = useState(true);
     const { permissionStatus, request } = useCameraPermissions();
-    const [previewSize, setPreviewSize] = useState<Rect | undefined>(undefined);
+    const [previewSize, setPreviewSize] = useState(undefined);
 
     const safeArea = reduceSafeArea && previewSize ? reduceHeightTo70Percent(previewSize) : undefined;
 
@@ -46,13 +32,7 @@ export const Preview: FC<PreviewProps> = ({ onStopRendering }) => {
         }
     }, [request]);
 
-    /**
-     * A function to calculate the preview size based on the LayoutChangeEvent.
-     * 
-     * @param {LayoutChangeEvent} event - the event containing layout information
-     * @returns {void}
-     */
-    const calculatePreviewSize = (event: LayoutChangeEvent) => {
+    const calculatePreviewSize = (event) => {
         const {
             nativeEvent: {
                 layout: { x, y, width, height },
@@ -67,11 +47,6 @@ export const Preview: FC<PreviewProps> = ({ onStopRendering }) => {
         });
     };
 
-    /**
-     * Function to handle video recording logic.
-     *  - If video recording is active, stop it.
-     *  - If video recording is not active, start it.
-     */
     const onVideoRecording = () => {
         if (videoRecording) {
             videoRecording.stop().then(({ uri }) => {

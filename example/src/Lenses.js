@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Button } from './Button';
 import { FlatList, Image, Pressable, StyleSheet, View } from 'react-native';
-import { useCameraKit, type Lens } from '@snap/camera-kit-react-native';
+import { useCameraKit } from '@snap/camera-kit-react-native';
 import React from 'react';
 
-const groupId = 'REPLACE-THIS-WITH-YOUR-LENSES-GROUP-ID';
-const launchDataLensId = 'REPLACE-THIS-WITH-YOUR-LENSID-WITH-LAUNCH-DATA';
+// const groupId = 'REPLACE-THIS-WITH-YOUR-LENSES-GROUP-ID';
+// const launchDataLensId = 'REPLACE-THIS-WITH-YOUR-LENSID-WITH-LAUNCH-DATA';
+
+const groupId = '8281c197-d819-4774-8623-061687c96c35';
+const launchDataLensId = '434ff6d0-f0f0-4068-b643-911dd03e7297';
 
 /**
  * A function that retrieves launch data based on a provided lens ID.
@@ -13,7 +16,7 @@ const launchDataLensId = 'REPLACE-THIS-WITH-YOUR-LENSID-WITH-LAUNCH-DATA';
  * @param {string} lensId - The ID of the lens to retrieve launch data for.
  * @return {object | undefined} Returns an object with launch parameters if the provided lens ID matches the stored data, otherwise returns undefined.
  */
-const getLaunchData = (lensId: string) =>
+const getLaunchData = (lensId) =>
     launchDataLensId === lensId
         ? {
               launchParams: { text: new Date().toLocaleString() },
@@ -21,16 +24,16 @@ const getLaunchData = (lensId: string) =>
         : undefined;
 
 /**
- * It defines a React component called Lenses that fetches a list of lenses based on a group ID, allows 
- * the user to apply or remove lenses, and displays them in a horizontal list using FlatList. It uses 
- * hooks like useState, useEffect, and custom hook useCameraKit for managing state and side effects. 
- * The applyLens and removeLens functions interact with a camera kit, and error handling 
+ * It defines a React component called Lenses that fetches a list of lenses based on a group ID, allows
+ * the user to apply or remove lenses, and displays them in a horizontal list using FlatList. It uses
+ * hooks like useState, useEffect, and custom hook useCameraKit for managing state and side effects.
+ * The applyLens and removeLens functions interact with a camera kit, and error handling
  * is done using catch(console.error)
- * 
+ *
  * @return {JSX.Element} The JSX element representing the component.
  */
 export const Lenses = () => {
-    const [lenses, setLenses] = useState<Lens[]>([]);
+    const [lenses, setLenses] = useState([]); // Removed <Lens[]>
     const { loadLensGroup, applyLens, removeLens, isSessionReady } = useCameraKit();
     useEffect(() => {
         if (isSessionReady) {

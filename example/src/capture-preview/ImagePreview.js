@@ -1,16 +1,10 @@
-import type { FC } from 'react';
 import React from 'react';
 import { View, Pressable, Image } from 'react-native';
 import { globalStyles } from '../globalStyles';
 import { useCameraState, useCameraStateDispatch } from '../CameraStateContext';
 import { Hint } from './Hint';
 
-/**
- * React functional component that displays a snapshot image and allows the user to close it by pressing on it.
- *
- * @return {JSX.Element} The rendered snapshot view component
- */
-export const Snapshot: FC = () => {
+export const Snapshot = () => {
     const { snapshotUri } = useCameraState();
     const dispatch = useCameraStateDispatch();
 

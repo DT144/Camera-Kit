@@ -5,8 +5,11 @@ import { CameraKitContext } from '@snap/camera-kit-react-native';
 import { Preview } from './CameraPreview';
 import { CameraContext } from './CameraStateContext';
 
+// const apiToken =
+//     'REPLACE-THIS-WITH-YOUR-API-TOKEN';
+
 const apiToken =
-    'REPLACE-THIS-WITH-YOUR-API-TOKEN';
+    'eyJhbGciOiJIUzI1NiIsImtpZCI6IkNhbnZhc1MyU0hNQUNQcm9kIiwidHlwIjoiSldUIn0.eyJhdWQiOiJjYW52YXMtY2FudmFzYXBpIiwiaXNzIjoiY2FudmFzLXMyc3Rva2VuIiwibmJmIjoxNzQ0MDU5NzM0LCJzdWIiOiIzY2EwYzFmNS0xM2MzLTRiNmUtOTUzOC1iOTU4YjhmZmQ4ZGZ-U1RBR0lOR34xMWRhNTZhNC03ZDA5LTQ1NTQtODZhZi1iY2VjNGY1YjEzNGMifQ.TkiMw3NZyQsurrsceJm8yLpZftQPHpvEIIc856T5IVY';
 
 export default function App() {
     const [stopRendering, setStopRendering] = useState(false);
@@ -43,5 +46,5 @@ const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
         backgroundColor: 'black',
-    }
+    },
 });
