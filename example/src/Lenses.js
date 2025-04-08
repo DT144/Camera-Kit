@@ -4,11 +4,8 @@ import { FlatList, Image, Pressable, StyleSheet, View } from 'react-native';
 import { useCameraKit } from '@snap/camera-kit-react-native';
 import React from 'react';
 
-// const groupId = 'REPLACE-THIS-WITH-YOUR-LENSES-GROUP-ID';
-// const launchDataLensId = 'REPLACE-THIS-WITH-YOUR-LENSID-WITH-LAUNCH-DATA';
-
-const groupId = '8281c197-d819-4774-8623-061687c96c35';
-const launchDataLensId = '434ff6d0-f0f0-4068-b643-911dd03e7297';
+const groupId = 'REPLACE-THIS-WITH-YOUR-LENSES-GROUP-ID_CHECK DOC';
+const launchDataLensId = 'REPLACE-THIS-WITH-YOUR-LENSID-WITH-LAUNCH-DATA_CHECK DOC';
 
 /**
  * A function that retrieves launch data based on a provided lens ID.
